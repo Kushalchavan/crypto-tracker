@@ -4,10 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "../ui/button";
-import { ArrowRight, User, XIcon } from "lucide-react";
+import { ArrowRight, Moon, Sun, User, XIcon } from "lucide-react";
+import { useTheme } from "next-themes";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 const Hero = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const { setTheme } = useTheme();
 
   return (
     <>
@@ -15,8 +23,8 @@ const Hero = () => {
         {/* Navbar */}
         <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
           <h1 className="font-bold text-xl text-foreground">CryptoPulse</h1>
-          
-          <div className="hidden md:flex items-center gap-8 transition duration-500 text-slate-800">
+
+          <div className="hidden md:flex items-center gap-8 transition duration-500 text-muted-foreground">
             <a href="#" className="hover:text-green-600 transition">
               Cryptocurrencies
             </a>
@@ -35,6 +43,27 @@ const Hero = () => {
           </div>
 
           <div className="flex gap-2">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon">
+                  <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+                  <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setTheme("light")}>
+                  Light
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                  Dark
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("system")}>
+                  System
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Link href="/signup">
               <Button className="hidden md:block px-6 py-2 active:scale-95 transition-all rounded-full text-white cursor-pointer">
                 Sign Up
@@ -42,7 +71,7 @@ const Hero = () => {
             </Link>
 
             <Link href="/login">
-              <Button className="cursor-pointer hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900 bg-trasparent">
+              <Button className="cursor-pointer hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full  hover:text-slate-900 bg-trasparent text-foreground">
                 Login
               </Button>
             </Link>
@@ -68,7 +97,7 @@ const Hero = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`fixed inset-0 z-[100] bg-black/40 text-black backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-300 ${
+          className={`fixed inset-0 z-[100] bg-black/40 backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-300 text-foreground ${
             menuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
@@ -100,14 +129,14 @@ const Hero = () => {
           <div className="absolute top-28 xl:top-10 -z-10 left-1/4 size-72 sm:size-96 xl:size-120 2xl:size-132 bg-green-300 blur-[100px] opacity-30"></div>
 
           {/* Headline + CTA */}
-          <h1 className="mt-24 text-5xl md:text-6xl font-bold max-w-5xl text-center md:leading-[70px]">
+          <h1 className="mt-24 text-5xl md:text-6xl font-bold max-w-5xl text-center md:leading-[70px] text-foreground">
             Track your Coins and NFTs with{"  "}
             <span className=" bg-gradient-to-r from-green-700 to-green-400 bg-clip-text text-transparent text-nowrap">
               CryptoPulse Portfolio{" "}
             </span>{" "}
           </h1>
 
-          <p className="max-w-md text-center text-base  my-7">
+          <p className="max-w-md text-center text-base  my-7 text-muted-foreground">
             Whether you’re just observing the crypto market or meticulously
             tracking your holdings — CryptoPulse Portfolio is tailored to meet
             your needs.
@@ -123,7 +152,7 @@ const Hero = () => {
             </Link>
 
             <Link href="/signup">
-              <button className="flex items-center gap-2 border border-slate-400 hover:bg-green-100 transition rounded-full px-7 h-12 cursor-pointer text-slate-700 font-semibold">
+              <button className="flex items-center gap-2 border border-slate-400 transition rounded-full px-7 h-12 cursor-pointer text-foreground font-semibold">
                 <User className="size-4 stroke-1 " />
                 <span>Sign Up</span>
               </button>
