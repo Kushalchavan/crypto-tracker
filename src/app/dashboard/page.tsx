@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { getCoins } from "@/lib/api";
+import Loading from "@/components/Loading";
 
 interface Coin {
   id: string;
@@ -23,8 +24,8 @@ export default function DashboardPage() {
         setLoading(true);
         const data = await getCoins();
         setCoins(data);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (error: any) {
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -32,7 +33,7 @@ export default function DashboardPage() {
     fetchCoins();
   }, []);
 
-  if (loading) return <p className="p-6">Loading coins...</p>;
+  if (loading) return <Loading/>
   if (error) return <p className="p-6 text-red-500">Error: {error}</p>;
 
   return (
