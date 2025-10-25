@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -59,7 +61,7 @@ const Signup = () => {
           </CardAction>
         </CardHeader>
         <CardContent>
-          <form onClick={handleSignup}>
+          <form onSubmit={handleSignup}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="name">Name</Label>
