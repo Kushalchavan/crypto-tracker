@@ -1,9 +1,5 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { getCoins } from "@/lib/api";
-import Loading from "@/components/Loading";
 import {
   Table,
   TableBody,
@@ -13,6 +9,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 interface Coin {
   id: string;
@@ -27,28 +32,15 @@ interface Coin {
   ath_change_percentage: number;
 }
 
-export default function DashboardPage() {
-  const [coins, setCoins] = useState<Coin[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) {
+  const page = Number(searchParams.page) || 1;
+  const perPage = 25;
 
-  useEffect(() => {
-    async function fetchCoins() {
-      try {
-        setLoading(true);
-        const data = await getCoins();
-        setCoins(data);
-      } catch (error: any) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchCoins();
-  }, []);
-
-  if (loading) return <Loading />;
-  if (error) return <p className="p-6 text-red-500">Error: {error}</p>;
+  const coins: Coin[] = await getCoins(page, perPage);
 
   return (
     <div className="py-4 px-6 md:px-6 lg:px-16 xl:px-22">
@@ -62,7 +54,6 @@ export default function DashboardPage() {
 
       <div className="mt-10 ">
         <Table>
-          <TableCaption></TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead>Rank</TableHead>
@@ -99,19 +90,71 @@ export default function DashboardPage() {
                 <TableCell className="text-right">
                   ${coin.current_price.toLocaleString()}
                 </TableCell>
-                <TableCell className={`text-right ${coin.price_change_percentage_24h >= 0 ? "text-green-500" : "text-red-500"}`}>
-                  {coin.price_change_percentage_24h.toFixed(2)}%
+                <TableCell
+                  className={`text-right ${
+                    coin.price_change_percentage_24h >= 0
+                      ? "text-green-500"
+                      : "text-red-500"
+                  }`}
+                >
+                  {coin.price_change_percentage_24h != null
+                    ? `${coin.price_change_percentage_24h.toFixed(2)}%`
+                    : "0.0"}
                 </TableCell>
                 <TableCell className="text-right">
                   ${coin.total_volume.toLocaleString()}
                 </TableCell>
-                <TableCell className="text-right">${coin.market_cap.toLocaleString()}</TableCell>
+                <TableCell className="text-right">
+                  ${coin.market_cap.toLocaleString()}
+                </TableCell>
                 <TableCell className="text-right text-muted-foreground">
                   {Math.floor(coin.ath_change_percentage)}%
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
+
+          <TableCaption className="mt-10">
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    href={`/dashboard?page=${page - 1}`}
+                    className={
+                      page === 1 ? "pointer-events-none opacity-50" : ""
+                    }
+                  />
+                </PaginationItem>
+
+                {[1, 2, 3, 4].map((p) => (
+                  <Pagination key={p}>
+                    <PaginationLink
+                      className={
+                        page === p ? "bg-primary-foreground" : "cursor-pointer"
+                      }
+                      href={`/dashboard?page=${p}`}
+                      isActive={page === p}
+                    >
+                      {p}
+                    </PaginationLink>
+                  </Pagination>
+                ))}
+
+                <PaginationItem>
+                  <PaginationEllipsis />
+                </PaginationItem>
+
+                <PaginationItem>
+                  <PaginationNext
+                    href={`/dashboard?page=${page + 1}`}
+                    className={
+                      page === 5 ? "pointer-events-none opacity-50" : ""
+                    }
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </TableCaption>
         </Table>
       </div>
     </div>
