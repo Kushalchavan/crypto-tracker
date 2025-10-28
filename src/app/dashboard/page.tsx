@@ -43,7 +43,7 @@ export default async function DashboardPage({
   const coins: Coin[] = await getCoins(page, perPage);
 
   return (
-    <div className="py-4 px-6 md:px-6 lg:px-16 xl:px-22">
+    <div className="py-4 px-6 md:px-6 lg:px-16 xl:px-22 mb-20">
       <h2 className="mt-5 text-2xl font-bold mb-3">
         Cryptocurrency Prices by Market Cap
       </h2>
