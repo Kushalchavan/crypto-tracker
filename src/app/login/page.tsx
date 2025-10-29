@@ -60,7 +60,7 @@ const Login = () => {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-6 mb-8">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -83,6 +83,7 @@ const Login = () => {
                     Forgot your password?
                   </a>
                 </div>
+
                 <Input
                   id="password"
                   type="password"
@@ -91,14 +92,15 @@ const Login = () => {
                   required
                 />
               </div>
+
               {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
             </div>
-          </form>
-        </CardContent>
-        <CardFooter className="flex-col gap-2">
           <Button type="submit" className="w-full">
             Login
           </Button>
+          </form>
+        </CardContent>
+        <CardFooter className="flex-col gap-2">
           <Button
             variant="outline"
             className="w-full"

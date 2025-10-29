@@ -13,7 +13,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         // Example: You can replace this with your DB logic
-        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/users/login`, {
+        const res = await fetch(`${process.env.NEXTAUTH_URL || "http://localhost:3000"}/api/users/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

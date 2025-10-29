@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -62,7 +62,7 @@ const Signup = () => {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSignup}>
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-6 mb-8">
               <div className="grid gap-2">
                 <Label htmlFor="name">Name</Label>
                 <Input
@@ -100,12 +100,13 @@ const Signup = () => {
                 />
               </div>
             </div>
+
+            <Button type="submit" className="w-full">
+              {loading ? <Spinner /> : "Signup"}
+            </Button>
           </form>
         </CardContent>
         <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full">
-            {loading ? <Spinner /> : "Signup"}
-          </Button>
           <Button variant="outline" className="w-full">
             Signup with Google
           </Button>
