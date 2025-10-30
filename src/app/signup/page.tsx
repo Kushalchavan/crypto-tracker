@@ -101,7 +101,7 @@ const Signup = () => {
               </div>
             </div>
 
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full" disabled={loading}>
               {loading ? <Spinner /> : "Signup"}
             </Button>
           </form>
