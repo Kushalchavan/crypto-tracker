@@ -6,7 +6,6 @@ import {
   CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -49,13 +48,9 @@ const Login = () => {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    await signIn("google", { callbackUrl: "/dashboard" });
-  };
-
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-gradient-to-tr from-[#a7f2c5] to-white">
-      <Card className="w-full max-w-sm">
+      <Card className="w-full max-w-sm pb-10">
         <CardHeader>
           <CardTitle className="font-bold">Login to your account</CardTitle>
           <CardDescription>
@@ -109,15 +104,6 @@ const Login = () => {
             </Button>
           </form>
         </CardContent>
-        <CardFooter className="flex-col gap-2">
-          <Button
-            variant="outline"
-            className="w-full"
-            onClick={handleGoogleLogin}
-          >
-            Login with Google
-          </Button>
-        </CardFooter>
       </Card>
     </div>
   );

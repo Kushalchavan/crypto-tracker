@@ -6,7 +6,6 @@ import {
   CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -106,11 +105,6 @@ const Signup = () => {
             </Button>
           </form>
         </CardContent>
-        <CardFooter className="flex-col gap-2">
-          <Button variant="outline" className="w-full">
-            Signup with Google
-          </Button>
-        </CardFooter>
       </Card>
     </div>
   );
