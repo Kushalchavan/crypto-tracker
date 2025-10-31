@@ -1,7 +1,7 @@
 const NewsLetter = () => {
   return (
     <>
-      <div className="w-full px-2 text-center text-white py-20 flex flex-col items-center justify-center">
+      <div className="w-full px-2 text-center text-base text-foreground py-20 flex flex-col items-center justify-center">
         <p className="text-green-500 font-medium">Get updated</p>
         <h1 className="max-w-lg font-semibold text-4xl/[44px] mt-2">
           Interested to stay up-to-date with cryptocurrencies?
