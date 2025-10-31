@@ -47,7 +47,6 @@ const CoinTable = () => {
   const searchParams = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
   const perPage = 25;
-  console.log(window.location.pathname);
 
   useEffect(() => {
     async function fetchCoins() {
@@ -68,6 +67,10 @@ const CoinTable = () => {
 
   const handlePageChange = (newPage: number) => {
     router.push(`/dashboard?page=${newPage}`);
+  };
+
+  const handleCoinClick = (id: string) => {
+    router.push(`/dashboard/${id}`);
   };
 
   return (
@@ -108,9 +111,13 @@ const CoinTable = () => {
               </TableRow>
             ) : filteredCoins.length > 0 ? (
               filteredCoins.map((coin) => (
-                <TableRow key={coin.id}>
+                <TableRow
+                  key={coin.id}
+                  onClick={() => handleCoinClick(coin.id)}
+                  className="cursor-pointer hover:bg-accent/5 transition"
+                >
                   <TableCell>{coin.market_cap_rank}</TableCell>
-                  <TableCell className="cursor-pointer">
+                  <TableCell className="cursor-pointer transition">
                     <div className="flex gap-2 items-center">
                       <Image
                         src={coin.image}
