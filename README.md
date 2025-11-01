@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💰 CryptoPulse – Cryptocurrency Tracker & Portfolio App
 
-## Getting Started
+A **fullstack cryptocurrency web application** built with **Next.js + TypeScript**, featuring **real-time crypto data**, **interactive charts**, and **user authentication** using **NextAuth**.  
+Users can **track live prices, view detailed market trends**, and **manage their crypto watchlist** – all powered by the **CoinGecko API**, **Recharts**, and **MongoDB**.
 
-First, run the development server:
+---
 
+## 🚀 Tech Stack
+
+### **Frontend**
+- ⚡ [Next.js ](https://nextjs.org/) – React Framework for SSR and static generation  
+- 💎 [TypeScript](https://www.typescriptlang.org/) – Type-safe development  
+- 🎨 [Tailwind CSS](https://tailwindcss.com/) – Utility-first styling  
+- 📊 [Recharts](https://recharts.org/en-US/) – Data visualization library  
+
+### **Backend**
+- 🌐 [Next.js API Routes](https://nextjs.org/docs/api-routes/introduction) – Fullstack serverless backend  
+- 🔐 [NextAuth.js](https://next-auth.js.org/) – Secure authentication (Google, GitHub, or Credentials)  
+- 🪙 [CoinGecko API](https://www.coingecko.com/en/api) – Fetch live cryptocurrency data  
+- 🍃 [MongoDB](https://www.mongodb.com/) – Database for user data & watchlists  
+- ⚙️ [Mongoose](https://mongoosejs.com/) – Elegant MongoDB object modeling  
+
+---
+
+## 🌟 Features
+
+✅ **User Authentication** – Sign in with Google, GitHub, or credentials using NextAuth  
+✅ **Live Cryptocurrency Prices** – Powered by CoinGecko API  
+✅ **Interactive Charts** – Price history visualized with Recharts  
+✅ **Search & Filter** – Quickly find coins by name or symbol  
+✅ **Responsive UI** – Clean, modern design optimized for all devices  
+✅ **Server-side Rendering (SSR)** – Improved performance and SEO  
+
+---
+
+## 🛠️ Installation & Setup
+
+### 1. Clone the repository
 ```bash
+git clone https://github.com/your-username/cryptopulse.git
+cd cryptopulse
+
+
+npm install
+# or
+yarn install
+
+
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret
+
+GITHUB_ID=your_github_client_id
+GITHUB_SECRET=your_github_client_secret
+
+MONGODB_URI=your_mongodb_connection_string
+COINGECKO_API_BASE=https://api.coingecko.com/api/v3
+
+
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📈 API Integration – CoinGecko
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**This app uses CoinGecko’s free API to fetch:**
 
-## Learn More
+**✅ Live prices for all major cryptocurrencies**
 
-To learn more about Next.js, take a look at the following resources:
+**✅ Historical data for Recharts visualization**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**✅ Market statistics and trends**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**⭐ If you like this project, give it a star on GitHub!**
